@@ -39,7 +39,8 @@ void CModel::Draw()
 	GLfloat posx = sinf(angle2 * (3.14159 / 180.0f))*5.0f;	//左右の移動値
 	glTranslatef(posx, 0.0f, 0.0f);		//行列スタックへ平行移動行列を乗算				1
 	glRotatef(angle, 1.0f, 1.0f, 1.0f);	//現在のカレント行列に X 回転行列が乗算される	2
-	glScalef(posx*50, posx*50, posx*50);			//行列スタックへ拡大縮小行列を乗算				3
+	//glScalef(posx*50, posx*50, posx*50);			//行列スタックへ拡大縮小行列を乗算				3
+	glScalef(100, 100, 100);			//行列スタックへ拡大縮小行列を乗算				3
 
 	angle += 1.0f;//角度更新
 	angle2 += 1.0f;

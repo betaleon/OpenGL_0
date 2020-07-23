@@ -22,6 +22,8 @@ CField* g_Field;
 CPyramid* g_Pyramid;
 
 CModel Box;	//CModel インスタンス
+LIGHT m_Light;
+
 
 int TexChangeCnt;
 int TexPat;
@@ -127,7 +129,13 @@ void OpenGLManager::Init(HWND hwnd)
 
 
 	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);	
+	//LIGHTING すべて０番を利用
+	glLightfv(GL_LIGHT0, GL_POSITION, (float*)&m_Light.Position); //座標をセット
+	glLightfv(GL_LIGHT0, GL_AMBIENT, (float*)&m_Light.Ambient); //環境光をセット
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, (float*)&m_Light.Diffuse); //反射光をセット
+	glLightfv(GL_LIGHT0, GL_SPECULAR, (float*)&m_Light.Specular); //鏡面反射光をセット
+	glEnable(GL_LIGHT0); //ライト0を有効にする
 	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 
@@ -184,6 +192,10 @@ void OpenGLManager::Draw(HDC dc)
 	// ポリゴン描画
 	//g_Field->Draw();
 
+
+	//LIGHTING
+
+
 	// ライティング有効
 	glEnable(GL_LIGHTING);
 
@@ -220,7 +232,7 @@ void OpenGLManager::Draw3D(HDC dc)
 	gluPerspective(VIEW_ANGLE, aspect, VIEW_NEAR_Z, VIEW_FAR_Z);//カレント行列にプロジェクション行列が乗算される
 	//m_posP = VECTOR3D(0.0f, 100.0f, -300.0f); //カメラ座標
 	m_posP = VECTOR3D(0.0f, 100.0f, -300.0f); //カメラ座標
-	m_posR = VECTOR3D(0.0f, 10.0f, 0.0f); //カメラ注視点
+	m_posR = VECTOR3D(0.0f, 0.0f, 0.0f); //カメラ注視点
 	m_vecUp = VECTOR3D(0.0f, 1.0f, 0.0f); //上方ベクトル
 	// 3D 用（モデル）ビューマトリクス設定
 	glMatrixMode(GL_MODELVIEW);
@@ -229,14 +241,17 @@ void OpenGLManager::Draw3D(HDC dc)
 		(double)m_posR.x, (double)m_posR.y, (double)m_posR.z,
 		0.0, 1.0, 0.0);//カレント行列にビュー行列乗算される
 
-
 	// ライティング無効
-	glDisable(GL_LIGHTING);
+	//glDisable(GL_LIGHTING);
 
 	// モデルビューマトリクスの設定
 	glMatrixMode(GL_MODELVIEW);
 	//カレント行列をコピー
-	glPushMatrix();					
+	glPushMatrix();				
+
+	glEnable(GL_LIGHTING); //ライトの処理をONにする
+
+
 
 	// 3D オブジェクトの描画
 	//g_Field->Draw();

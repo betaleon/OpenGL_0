@@ -132,9 +132,6 @@ struct MODEL
 };
 
 
-
-
-
 class CModel
 {
 private:
@@ -185,4 +182,13 @@ public:
 	{
 	
 	};
+};
+
+//ライトのパラメーター
+struct LIGHT
+{
+	VECTOR4D_MODEL	Position = { 0,0,500,0 };	//光源の座標 w = 0 の場合は平行光源 W = 1 の場合は点光源
+	COLOR_MODEL		Ambient = {0,0,0,1};			//環境光
+	COLOR_MODEL		Diffuse = {0,1,0,1 };			//反射光
+	COLOR_MODEL		Specular = { 0,0,0,1 };			//鏡面反射光
 };
