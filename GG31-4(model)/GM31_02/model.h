@@ -189,6 +189,6 @@ struct LIGHT
 {
 	VECTOR4D_MODEL	Position = { 0,0,500,0 };	//ŒõŒ¹‚ÌÀ•W w = 0 ‚Ìê‡‚Í•½sŒõŒ¹ W = 1 ‚Ìê‡‚Í“_ŒõŒ¹
 	COLOR_MODEL		Ambient = {0,0,0,1};			//ŠÂ‹«Œõ
-	COLOR_MODEL		Diffuse = {0,1,0,1 };			//”½ŽËŒõ
+	COLOR_MODEL		Diffuse = {0,100,0,1 };			//”½ŽËŒõ
 	COLOR_MODEL		Specular = { 0,0,0,1 };			//‹¾–Ê”½ŽËŒõ
 };

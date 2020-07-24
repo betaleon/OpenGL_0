@@ -255,8 +255,8 @@ void OpenGLManager::Draw3D(HDC dc)
 
 	// 3D オブジェクトの描画
 	//g_Field->Draw();
-	g_Pyramid->Draw();
-	//Box.Draw();	//モデルデータの描画
+	//g_Pyramid->Draw();
+	Box.Draw();	//モデルデータの描画
 
 
 	//テクスチャを使用しない
